@@ -18,7 +18,9 @@ SENTENCE = (
 def main() -> None:
     text = SENTENCE.strip()
     assert 1 <= len(text) <= 320, "entry must be 1-320 characters"
-    assert text.count(".") == 1, "entry must be exactly one sentence"
+    assert (
+        text.count(".") == 1 and "?" not in text and "!" not in text
+    ), "entry must be exactly one sentence"
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8") as f:
         f.write(text + "\n")
